@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<title>Sierpinski Gasket </title>
+		<script id="vertex-shader-2d" type="x-shader/x-vertex">
+		attribute vec4 vPosition;
+		void main(){
+			gl_Position = vPosition;
+		}
+		</script>
+
+		<script id="fragment-shader-2d" type="x-shader/x-fragment">
+		precision mediump float;
+		void main(){
+			gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+		}
+		</script>
+		<script id="vertex-shader-3d" type="x-shader/x-vertex">
+			attribute vec3 vPosition;
+			attribute vec3 vColor;
+			varying vec4 color;
+			void main(){
+				gl_Position = vec4(vPosition, 1.0);
+				color = vec4(vColor, 1.0);
+			}
+		</script>
+		<script id="fragment-shader-3d" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 color;
+			void main(){
+				gl_FragColor = color;
+			}
+		</script>
+
+		<script type="text/javascript" src="./common/gl-matrix-min.js"></script>
+		<script type="text/javascript" src="./common/initShaders.js"></script>
+		<script type="text/javascript" src="./common/webgl-utils.js"></script>
+
+		<script type="text/javascript" src="./js/gasket-triangles.js"></script>
+	</head>
+	<body>
+		<canvas id="triangle-canvas" width="512" height="512" style="float: left;">你的浏览器不支持HTML5 canvas元素</canvas>
+		层数控件（0~7，初始值为4）：<input type="range" id="selNum" min= "0" max="7" value="4"/>
+        <br/>
+        <br/>
+		2D:<input type="radio" name="shape" value="2d" />&nbsp;&nbsp;&nbsp;&nbsp;
+		3D:<input type="radio" name="shape" value="3d"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		线框：<input type="radio" name="shape" value="wire" checked="checked"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button  id="selShape" type="button">转换</button>
+        <br/>
+        <br/>
+		不旋转:<input type="radio" name="switch" value="2d" />&nbsp;&nbsp;&nbsp;&nbsp;
+		绕原点:<input type="radio" name="switch" value="3d" checked="checked"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		点到原点距离：<input type="radio" name="switch" value="wire"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button  id="selSwitch" type="button">选择</button>
+		<br /><br />
+		旋转角度控制（0~360，初始值为60）：<input type="range" id="rotate" min= "0" max="360" value="60"/>
+
+        <br/>
+        <br/>
+
+		<a href="../index.html"><button type="button">返回</button></a>
+	</body>
+</html>

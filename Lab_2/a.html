@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<title>Sierpinski Gasket </title>
+		<script id="vertex-shader-2d" type="x-shader/x-vertex">
+		attribute vec4 vPosition;
+		void main(){
+			gl_Position = vPosition;
+		}
+		</script>
+
+		<script id="fragment-shader-2d" type="x-shader/x-fragment">
+		precision mediump float;
+		void main(){
+			gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+		}
+		</script>
+		<script id="vertex-shader-3d" type="x-shader/x-vertex">
+			attribute vec3 vPosition;
+			attribute vec3 vColor;
+			varying vec4 color;
+			void main(){
+				gl_Position = vec4(vPosition, 1.0);
+				color = vec4(vColor, 1.0);
+			}
+		</script>
+		<script id="fragment-shader-3d" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 color;
+			void main(){
+				gl_FragColor = color;
+			}
+		</script>
+
+		<script type="text/javascript" src="./common/gl-matrix-min.js"></script>
+		<script type="text/javascript" src="./common/initShaders.js"></script>  
+		<script type="text/javascript" src="./common/webgl-utils.js"></script>
+        <script type="text/javascript" src="./js/gasket-triangles.js"></script>
+	</head>
+	<body>
+		<canvas id="triangle-canvas" width="512" height="512" style="float: left;">你的浏览器不支持HTML5 canvas元素</canvas>
+		<h4>任务a. 要求在网页上添加交互式控件，输入剖分的层次(0-7)，绘制对应图案。</h4>
+		层数控件（0~7，初始值为4）：<input type="range" id="selNum" min= "0" max="7" value="4"/>
+        <hr color="#974BE0" width="500px" align="left">
+        <a href="../index.html"><button type="button">返回</button></a>
+	</body>
+</html>
